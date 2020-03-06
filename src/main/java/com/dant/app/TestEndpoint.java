@@ -48,4 +48,9 @@ public class TestEndpoint {
 		throw new RuntimeException("test erreur");
 	}
 
+	@POST
+	@Path("/INSERT")
+	public String Insert(){
+		return "Test";
+	}
 }
