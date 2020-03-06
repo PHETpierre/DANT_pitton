@@ -1,5 +1,6 @@
 com\dant\app\TestEndpoint.class
 com\dant\exception\RuntimeExceptionMapper.class
 com\dant\app\App.class
+com\dant\app\ApiEndpoint.class
 com\dant\entity\Account.class
 com\dant\filter\GsonProvider.class
