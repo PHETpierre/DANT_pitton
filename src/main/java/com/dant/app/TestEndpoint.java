@@ -48,5 +48,4 @@ public class TestEndpoint {
 		throw new RuntimeException("test erreur");
 	}
 
-
 }
