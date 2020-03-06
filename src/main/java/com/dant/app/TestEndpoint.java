@@ -42,4 +42,11 @@ public class TestEndpoint {
 		throw new RuntimeException("Mon erreur");
 	}
 
+	@GET
+	@Path("/test")
+	public Response exception2(){
+		throw new RuntimeException("test erreur");
+	}
+
+
 }
