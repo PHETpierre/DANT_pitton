@@ -35,6 +35,12 @@
 			<artifactId>joda-time</artifactId>
 			<version>2.9.7</version>
 		</dependency>
+		<!--Jersey: unit testing framework-->
+		<dependency>
+			<groupId>org.glassfish.jersey.test-framework.providers</groupId>
+			<artifactId>jersey-test-framework-provider-jdk-http</artifactId>
+			<version>2.22.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>dant</finalName>

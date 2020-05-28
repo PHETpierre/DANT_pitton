@@ -11,21 +11,20 @@ import java.util.Map;
 @Produces(MediaType.APPLICATION_JSON)
 public class ApiEndpoint {
 
-    /***
+    /**
      * create table from csv file
      * @return
      */
     @GET //post
     @Path("/table")
-    @Produces(MediaType.TEXT_HTML)
+    @Produces("csv/text")
     public Boolean createTable(){
-        String column;
+        Boolean created = false;
 
-        Map<String,Object> table = new HashMap<String,Object>();
-        return true;
+        return created;
     }
 
-
-
-
+    /**
+     *
+     */
 }

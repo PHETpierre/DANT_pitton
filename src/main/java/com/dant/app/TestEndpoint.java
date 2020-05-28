@@ -18,13 +18,15 @@ public class TestEndpoint {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	public String helloWorld() {
+		System.out.println("HELLO WORLD!");
+
 		return "Hello World";
 	}
 
 	@GET
 	@Path("/list")
 	public List<String> getListInParams(@QueryParam("ids") List<String> ids) {
-		System.out.println(ids);
+		System.out.println("the id you've inserted: " +ids);
 		return ids;
 	}
 
