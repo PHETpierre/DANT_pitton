@@ -1,11 +1,12 @@
 package com.dant.Test;
 
+import junit.framework.*;
 import com.dant.entity.Column;
 import com.dant.entity.Table;
 
 import java.util.ArrayList;
 
-public class Table_Test {
+public class Table_Test extends TestCase{
     public static void main(String[] args) {
 
         Table table1 = new Table("Taxi1");

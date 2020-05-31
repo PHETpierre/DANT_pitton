@@ -1,10 +1,14 @@
 package com.dant.app;
 
 import com.dant.entity.Account;
+import com.dant.entity.Column;
+import com.dant.entity.DataBase;
+import com.dant.entity.Table;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -26,7 +30,7 @@ public class TestEndpoint {
 	@GET
 	@Produces(MediaType.TEXT_HTML)
 	@Path("/list")
-	public List<String> getListInParams(@QueryParam("ids") List<String> ids) { //?id=["leiya","popo"]
+		public List<String> getListInParams(@QueryParam("ids") List<String> ids) { //?id=["leiya","popo"]
 		System.out.println("the id you've inserted: " +ids);
 		return ids;
 	}
@@ -51,9 +55,7 @@ public class TestEndpoint {
 		throw new RuntimeException("test erreur");
 	}
 
-	@POST
-	@Path("/INSERT")
-	public String Insert(){
-		return "Test";
-	}
+
+
+
 }

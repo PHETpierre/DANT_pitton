@@ -7,7 +7,6 @@ import java.util.List;
 public class Table implements Serializable{
     private String name;
     private ArrayList<Column> columns;
-    private ArrayList<Index> indexes;
 
     public Table(){
     }
@@ -28,9 +27,6 @@ public class Table implements Serializable{
         return columns;
     }
 
-    public ArrayList<Index> getIndexes() {
-        return indexes;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -45,6 +41,11 @@ public class Table implements Serializable{
     @Override
     public String toString(){
         return String.format(name + ": " + columns);
+    }
+
+    @Override
+    public int hashCode(){
+        return name.hashCode();
     }
     /**
      * method get qui retourne les valeurs = une liste de ligne de la table

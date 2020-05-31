@@ -1,7 +1,9 @@
 package com.dant.entity;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class Column {
+public class Column implements Serializable {
     private String name;
     private String type;//pour l'instant c'est juste un String
     //private ArrayList<Column> col
@@ -23,8 +25,21 @@ public class Column {
         return type;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+
     @Override
     public String toString(){
-        return String.format(name);
+        return String.format(name +" : "+type);
     }
+
+    @Override
+    public int hashCode(){
+        return name.hashCode();
+    }
+
 }
