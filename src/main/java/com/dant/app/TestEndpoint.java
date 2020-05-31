@@ -24,8 +24,9 @@ public class TestEndpoint {
 	}
 
 	@GET
+	@Produces(MediaType.TEXT_HTML)
 	@Path("/list")
-	public List<String> getListInParams(@QueryParam("ids") List<String> ids) {
+	public List<String> getListInParams(@QueryParam("ids") List<String> ids) { //?id=["leiya","popo"]
 		System.out.println("the id you've inserted: " +ids);
 		return ids;
 	}

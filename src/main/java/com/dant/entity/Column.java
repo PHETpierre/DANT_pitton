@@ -23,4 +23,8 @@ public class Column {
         return type;
     }
 
+    @Override
+    public String toString(){
+        return String.format(name);
+    }
 }

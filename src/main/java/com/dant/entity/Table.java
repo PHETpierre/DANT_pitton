@@ -20,6 +20,10 @@ public class Table implements Serializable{
         return name;
     }
 
+    public void setColumns(ArrayList<Column> columns) {
+        this.columns = columns;
+    }
+
     public ArrayList<Column> getColumns() {
         return columns;
     }
@@ -38,14 +42,16 @@ public class Table implements Serializable{
         return name.equals(table.name);
     }
 
+    @Override
+    public String toString(){
+        return String.format(name + ": " + columns);
+    }
     /**
-     * method get qui retourne les valeurs une liste de ligne
+     * method get qui retourne les valeurs = une liste de ligne de la table
      */
     public ArrayList<Object[]> get(String name) {
         ArrayList<Object[]> rows = new ArrayList<>();
-        if(true){
 
-        }
         return rows;
     }
 
