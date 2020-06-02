@@ -23,10 +23,10 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class ApiEndpoint {
-
     /**
      * table creation with given name and columns in parameters
-     * created by lra on 2020-05-31
+     * CREATE TABLE NAME (columnName : type)
+     * created by lra
      * @return
      */
     @POST
@@ -45,7 +45,7 @@ public class ApiEndpoint {
         Gson gson=new Gson();
         columns = gson.fromJson(jsonArray,arrayListType);//convert the jsonArray to ArrayList<Column>
         table.setColumns(columns);
-        DataBase.getInstance().addTable(table);
+        DataBase.getInstance().addTable(table);//store table in the data base
 
         return Response.status(200).build();//OK, post method successful
     }

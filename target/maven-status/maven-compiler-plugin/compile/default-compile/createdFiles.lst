@@ -5,6 +5,10 @@ com\dant\entity\Account.class
 com\dant\exception\RuntimeExceptionMapper.class
 com\dant\app\App.class
 com\dant\app\ApiEndpoint$1.class
+com\dant\utils\ColumnConverter.class
+com\dant\entity\DataBase.class
 com\dant\entity\Index.class
+com\dant\utils\ColumnConverterProvider.class
 com\dant\app\TestEndpoint.class
 com\dant\filter\GsonProvider.class
+com\dant\Test\Table_Test.class

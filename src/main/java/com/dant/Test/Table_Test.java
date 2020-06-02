@@ -1,5 +1,6 @@
 package com.dant.Test;
 
+import com.dant.entity.DataBase;
 import junit.framework.*;
 import com.dant.entity.Column;
 import com.dant.entity.Table;
@@ -19,5 +20,6 @@ public class Table_Test extends TestCase{
 
         System.out.println(table1);
 
+        System.out.println(DataBase.getInstance().getTable("Green Taxi"));
     }
 }

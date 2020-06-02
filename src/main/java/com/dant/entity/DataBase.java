@@ -1,5 +1,8 @@
 package com.dant.entity;
 
+import com.google.gson.internal.$Gson$Preconditions;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 /**
@@ -16,6 +19,11 @@ public class DataBase {
         return instance;
     }
 
+    //to get all the stored tables
+    public Map<String, Table> getAllTables(){
+        return storedTables;
+    }
+
     //to check the table
     public Table getTable(String name){
         return storedTables.get(name);
@@ -25,7 +33,23 @@ public class DataBase {
     public void addTable(Table table){
         storedTables.put(table.getName(),table);
         System.out.println("Newly added table: " + table);
+        System.out.println(DataBase.getInstance().getAllTables().toString());//test to see if the table is really created
     }
 
-    //TODO: Create a delete method
+    public Map<String, Table> getStoredTables() {
+        return storedTables;
+    }
+
+    public Map<String, Column> getStroredColumns() {
+        return stroredColumns;
+    }
+
+    @Override
+    public String toString(){
+        String s = "The database contains: ";
+        for (Table table : storedTables.values()) {
+            s = table.getName();
+        }
+        return s;
+    }
 }

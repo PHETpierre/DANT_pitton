@@ -7,6 +7,7 @@ import java.util.List;
 public class Table implements Serializable{
     private String name;
     private ArrayList<Column> columns;
+    private ArrayList<Index> indexes;//stores the created index
 
     public Table(){
     }
