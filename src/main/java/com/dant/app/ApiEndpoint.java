@@ -59,6 +59,11 @@ public class ApiEndpoint {
     }
 
     //test select a table by name and return the whole table
+    /**
+     *get a table by its name test (without data)
+     * @return Table
+     * @param name from @QueryParam
+     */
     @GET
     @Path("/select")
     public Table getTable(@QueryParam("name") String name){
