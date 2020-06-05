@@ -6,8 +6,8 @@ import java.util.List;
 
 public class Table implements Serializable{
     private String name;
-    private ArrayList<Column> columns;
-    private ArrayList<Index> indexes;//stores the created index
+    private ArrayList<Column> columns;//stores the created columns
+    private ArrayList<Index> indexes = new ArrayList<>();//stores the created indexes
 
     public Table(){
     }
@@ -28,6 +28,13 @@ public class Table implements Serializable{
         return columns;
     }
 
+    //public void setIndexes(ArrayList<Index> indexes) { this.indexes = indexes; }
+
+    public ArrayList<Index> getIndexes() {
+        return indexes;
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -41,20 +48,12 @@ public class Table implements Serializable{
 
     @Override
     public String toString(){
-        return String.format(name + ": " + columns);
+        return String.format(name + ": " + columns + ", INDEXES ---- " + indexes);
     }
 
     @Override
     public int hashCode(){
         return name.hashCode();
-    }
-    /**
-     * method get qui retourne les valeurs = une liste de ligne de la table
-     */
-    public ArrayList<Object[]> get(String name) {
-        ArrayList<Object[]> rows = new ArrayList<>();
-
-        return rows;
     }
 
 

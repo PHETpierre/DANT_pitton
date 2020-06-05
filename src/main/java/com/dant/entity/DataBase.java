@@ -11,7 +11,7 @@ import java.util.Map;
 public class DataBase {
 
     private Map<String,Table> storedTables = new HashMap<>();//String = table name
-    private Map<String, Column> stroredColumns = new HashMap<>();//String = column name
+    private Map<String, Column> storedColumns = new HashMap<>();//String = column name
 
     //singleton and should not be instantiated directly, this is the only instance
     private static DataBase instance = new DataBase();
@@ -33,7 +33,6 @@ public class DataBase {
     public void addTable(Table table){
         storedTables.put(table.getName(),table);
         System.out.println("Newly added table: " + table);
-        System.out.println(DataBase.getInstance().getAllTables().toString());//test to see if the table is really created
     }
 
     public Map<String, Table> getStoredTables() {
@@ -41,7 +40,7 @@ public class DataBase {
     }
 
     public Map<String, Column> getStroredColumns() {
-        return stroredColumns;
+        return storedColumns;
     }
 
     @Override

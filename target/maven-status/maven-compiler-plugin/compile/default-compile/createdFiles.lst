@@ -10,5 +10,6 @@ com\dant\entity\DataBase.class
 com\dant\entity\Index.class
 com\dant\utils\ColumnConverterProvider.class
 com\dant\app\TestEndpoint.class
+com\dant\Test\API_Unit_Testing.class
 com\dant\filter\GsonProvider.class
 com\dant\Test\Table_Test.class
