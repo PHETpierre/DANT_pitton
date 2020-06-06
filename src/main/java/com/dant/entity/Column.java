@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Column implements Serializable {
     private String name;
-    private String type;//pour l'instant c'est juste un String
+    private String type;//for now, it's just a String but later we'll figure out how to have a true Type
     //private ArrayList<Column> col
 
     public Column(){

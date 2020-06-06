@@ -4,11 +4,12 @@ import com.dant.entity.DataBase;
 import junit.framework.*;
 import com.dant.entity.Column;
 import com.dant.entity.Table;
+import org.joda.time.DateTime;
 
 import java.util.ArrayList;
 
 public class Table_Test extends TestCase{
-    public static void main(String[] args) {
+    public void testTable() throws Exception {
 
         Table table1 = new Table("Taxi1");
         Column col1 = new Column("VendorID","String");
@@ -18,8 +19,8 @@ public class Table_Test extends TestCase{
         cols.add(col2);
         table1.setColumns(cols);
 
-        System.out.println(table1);
-
-        System.out.println(DataBase.getInstance().getTable("Green Taxi"));
+        //expect the table name to be the given
+        assertEquals("Taxi1",table1.getName());
     }
+
 }
