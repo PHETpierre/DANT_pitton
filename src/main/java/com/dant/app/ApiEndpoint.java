@@ -9,6 +9,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.opencsv.CSVReader;
 import org.apache.commons.io.TaggedIOException;
 import org.jboss.resteasy.annotations.Query;
 import org.joda.time.DateTime;
@@ -18,10 +19,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
 
 
 @Path("/api")
@@ -119,6 +121,45 @@ public class ApiEndpoint {
 
         System.out.println("THE FINAL TABLE: ---- " + table);
 
+        return Response.status(200).build();//OK Status for post method
+    }
+    /**
+     * phetsinorath pierre
+     * insert data in table
+     * @return a Response code
+     * @param body whole body
+     */
+    @POST
+    @Path("/saveCsv")
+    @Consumes(MediaType.TEXT_PLAIN)
+    public Response insertData(String body) {
+        //System.out.println(body);
+        Scanner scanner = new Scanner(body);
+        String nextLine;
+
+        try {
+            File myObj = new File("src/main/tmp/test.txt");
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        try {
+            FileWriter myWriter = new FileWriter("src/main/tmp/test.txt");
+            while (scanner.hasNextLine() && !((nextLine = scanner.nextLine()).equals(""))) {
+                myWriter.write(nextLine+"\n");
+            }
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
         return Response.status(200).build();//OK Status for post method
     }
 }
