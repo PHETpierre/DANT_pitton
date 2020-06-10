@@ -162,4 +162,42 @@ public class ApiEndpoint {
         }
         return Response.status(200).build();//OK Status for post method
     }
+
+    /**
+     * phetsinorath pierre
+     * créer un fichier
+     */
+    public void createFile(String path){
+        try {
+            File myObj = new File(path);
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred. During file création");
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * phetsinorath pierre
+     * écrit dans un fichier
+     */
+    public void writeFile(String inputFile, String path){
+        Scanner scanner = new Scanner(inputFile);
+        String nextLine;
+        try {
+            FileWriter myWriter = new FileWriter(path);
+            while (scanner.hasNextLine() && !((nextLine = scanner.nextLine()).equals(""))) {
+                myWriter.write(nextLine+"\n");
+            }
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
 }
