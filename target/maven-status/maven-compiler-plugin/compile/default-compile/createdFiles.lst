@@ -6,6 +6,7 @@ com\dant\exception\RuntimeExceptionMapper.class
 com\dant\app\App.class
 com\dant\app\ApiEndpoint$1.class
 com\dant\utils\ColumnConverter.class
+com\dant\utils\FileHandler.class
 com\dant\entity\DataBase.class
 com\dant\entity\Index.class
 com\dant\utils\ColumnConverterProvider.class
