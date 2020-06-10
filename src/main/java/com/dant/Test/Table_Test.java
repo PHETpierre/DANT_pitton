@@ -20,7 +20,8 @@ public class Table_Test extends TestCase{
         table1.setColumns(cols);
 
         //expect the table name to be the given
-        assertEquals("Taxi1",table1.getName());
+        assertEquals("Taxi1", table1.getName());
+        assertEquals(cols, table1.getColumns());
     }
 
 }
