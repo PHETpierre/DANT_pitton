@@ -26,7 +26,7 @@ public class API_Unit_Testing extends JerseyTest{
     }
 
     @Test
-    @Order(3)
+    @Order(2)
     public void createTableTest() throws Exception {
         Table_Test testTable = new Table_Test();
 
@@ -35,14 +35,6 @@ public class API_Unit_Testing extends JerseyTest{
 
     @Test
     @Order(1)
-    public void createAccountTest() throws Exception {
-        Account testAccount = new Account("toto@helloworld.com");
-
-        assertEquals("toto@helloworld.com", testAccount.getEmail());
-    }
-
-    @Test
-    @Order(2)
     public void testCreateColumn() throws Exception {
         Column testColumn = new Column("VendorID", "String");
 
@@ -51,7 +43,7 @@ public class API_Unit_Testing extends JerseyTest{
     }
 
     @Test
-    @Order(4)
+    @Order(3)
     public void testCreateIndex(String body) throws Exception {
 
         JsonObject json = new JsonParser().parse(body).getAsJsonObject();
