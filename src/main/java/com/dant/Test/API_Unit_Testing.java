@@ -44,9 +44,10 @@ public class API_Unit_Testing extends JerseyTest{
 
     @Test
     @Order(3)
-    public void testCreateIndex(String body) throws Exception {
-
-        JsonObject json = new JsonParser().parse(body).getAsJsonObject();
+    public void testCreateIndex() throws Exception {
+        String s = "{\"givenPositions\" : [0,1], \"name\": \"vendorid_tpep_pickup_datetime_idx\",\"table_name\": \"Yellow Taxi\"}";
+        JsonObject json = new JsonObject();
+        json.getAsJsonObject(s);
         String tableName = json.get("table_name").getAsString();
         Table table = DataBase.getInstance().getTable(tableName);
 
