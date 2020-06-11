@@ -2,9 +2,11 @@ package com.dant.Test;
 
 import com.dant.app.ApiEndpoint;
 import com.dant.entity.*;
+import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import static org.junit.Assert.*;
@@ -46,8 +48,7 @@ public class API_Unit_Testing extends JerseyTest{
     @Order(3)
     public void testCreateIndex() throws Exception {
         String s = "{\"givenPositions\" : [0,1], \"name\": \"vendorid_tpep_pickup_datetime_idx\",\"table_name\": \"Yellow Taxi\"}";
-        JsonObject json = new JsonObject();
-        json.getAsJsonObject(s);
+        JsonObject json = (new JsonParser()).parse(s).getAsJsonObject();
         String tableName = json.get("table_name").getAsString();
         Table table = DataBase.getInstance().getTable(tableName);
 
