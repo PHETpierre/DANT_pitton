@@ -9,6 +9,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
+import com.opencsv.CSVReader;
+import javafx.scene.control.TableColumn;
 import org.apache.commons.io.TaggedIOException;
 import org.jboss.resteasy.annotations.Query;
 import org.joda.time.DateTime;
@@ -18,10 +20,13 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+
+import static com.dant.entity.Index.insertDatafct;
 
 
 @Path("/api")
@@ -86,8 +91,6 @@ public class ApiEndpoint {
         //retrieve the created table from the DataBase
         String tableName = json.get("table_name").getAsString();
         Table table = DataBase.getInstance().getTable(tableName);
-        //test print
-        System.out.println("INDEX: ---- the retrieved table:" + table);
 
         //extract the givenPositions from the body and put them into ArrayList<Integer>
         ArrayList<Integer> givenPositions = new ArrayList<>();
@@ -95,29 +98,79 @@ public class ApiEndpoint {
         for(int i = 0; i < jsonArray.size(); i++){
             givenPositions.add(jsonArray.get(i).getAsInt());
         }
-        //test print
-        System.out.println("INDEX: ---- the givenPositions: " + givenPositions.toString());
 
         //create the index
         String indexName = json.get("name").getAsString();
         Index index = new Index(indexName);
-        //test print
-        System.out.println("INDEX: ---- the created index: " + index);
 
         //add the retrieved columns and the givenPositions to the newly created index
         index.addColumns(table,givenPositions);
-        //test print
-        System.out.println("INDEX: ---- the set up index: " + index);
 
         //add the new index to the table
-        System.out.println("BEFORE: index size in the table: " + table.getIndexes().size());
         table.getIndexes().add(index);
-        System.out.println("AFTER: index size in the table: " + table.getIndexes().size());
 
         //verify if the index is added in the table
         System.out.println("TABLE ---- index in the table: " + table.getIndexes());
-
         System.out.println("THE FINAL TABLE: ---- " + table);
+
+        return Response.status(200).build();//OK Status for post method
+    }
+    /**
+     * phetsinorath pierre
+     * insert data in table
+     * @return a Response code
+     * @param body whole body
+     */
+    @POST
+    @Path("/saveCsv")
+    @Consumes({MediaType.TEXT_PLAIN, MediaType.TEXT_HTML})
+    public Response insertData(@QueryParam("tableName") String tableName,
+                               @QueryParam("givenPosition") ArrayList<String> givenPosition,
+            String body) {
+        //retrieve the given name in the param
+        String nameTable = tableName;
+        System.out.println("The retrieved table:" + nameTable);
+
+        //retrieve the given position
+        ArrayList<String> givenPosstr = givenPosition;
+        ArrayList<Integer> givenPosint = new ArrayList<>();
+        for (String s: givenPosstr) {
+            givenPosint.add(Integer.parseInt(s));
+        }
+        System.out.println("The given positions: " + givenPosint.toString());
+
+        Table table = DataBase.getInstance().getTable(nameTable);
+        //System.out.println(body);
+        Scanner scanner = new Scanner(body);
+        String nextLine;
+        File myObj = new File("src/main/tmp/test.txt");
+        try {
+            if (myObj.createNewFile()) {
+                System.out.println("File created: " + myObj.getName());
+            } else {
+                System.out.println("File already exists.");
+
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        try {
+            FileWriter myWriter = new FileWriter("src/main/tmp/test.txt");
+            while (scanner.hasNextLine() && !((nextLine = scanner.nextLine()).equals(""))) {
+                myWriter.write(nextLine+"\n");
+            }
+            myWriter.close();
+            System.out.println("Successfully wrote to the file.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        //isert Data into the index
+        for (Index i: table.getIndexes()) {
+            insertDatafct(i,myObj,givenPosint);
+        }
 
         return Response.status(200).build();//OK Status for post method
     }

@@ -16,8 +16,8 @@ public class Index {
     public String name;
     public Column column;// the chosen column
     public HashMap<Column,Integer> columns = new HashMap<>(); // for the case 1..n columns K: Column V: its position in the table
-    public HashMap<String, ArrayList<Integer>> rows = new HashMap<>();// rows to be stored, K: Column actual value V: position of the row containing the value in the file
-    public HashMap<String,HashMap<String, ArrayList<Integer>>> indexRows = new HashMap<>();//K: index name, V: rows
+    public static HashMap<String, ArrayList<Integer>> rows = new HashMap<>();// rows to be stored, K: Column actual value V: position of the rows containing the value in the file
+    public static HashMap<String,HashMap<String, ArrayList<Integer>>> indexRows = new HashMap<>();//K: index name, V: rows
     public Index(String name){ this.name = name; }
 
     /**
@@ -44,7 +44,7 @@ public class Index {
      * @param file the retrieved file from the api that contains data
      * @param givenPositions positions of the columns to be filled in the table
      * */
-    public void insertData(Index index, File file,ArrayList<Integer> givenPositions) {
+    public static void insertDatafct(Index index, File file,ArrayList<Integer> givenPositions) {
         ArrayList<String> lines;//store the lines and deleted after its use
         BufferedReader reader;
         ArrayList<Integer> posInFile = new ArrayList<>();//position of the line where the needed values are
@@ -53,15 +53,15 @@ public class Index {
         try {
             reader = new BufferedReader(new FileReader(file));
             String line = reader.readLine();
-            int count = -1; //counter of line, -1 because the first line is 0
+            int count = 0;
             //read each line (may takes eternity)
             while (line != null) {
                 line = reader.readLine();
                 lines = (ArrayList<String>) Arrays.asList(line.split("\\s*,\\s*"));//store the retrieve line in an arrayList of strings split by coma
                 //loop through the line and get the value by the given positions
-                value = concatString(givenPositions,lines);
-                count +=1;
+                value = concatString(givenPositions,lines);//hello,world,ok [0,1] --> helloworld
                 posInFile.add(count);
+                count +=1;
                 if(rows.containsKey(value)){
                     rows.get(value).add(count);
                 }

@@ -30,12 +30,28 @@ public class TestEndpoint {
 		return "Hello World";
 	}
 
-	@GET
+	@POST
 	@Produces(MediaType.TEXT_HTML)
+	@Consumes({MediaType.TEXT_PLAIN,MediaType.TEXT_HTML})
 	@Path("/list")
-		public List<String> getListInParams(@QueryParam("ids") List<String> ids) { //?id=["leiya","popo"]
+		public ArrayList<Integer> getListInParams(@QueryParam("ids") List<String> ids,
+											@QueryParam("name") String name,
+											String body) {
+		String something = body + "!";
 		System.out.println("the id you've inserted: " +ids);
-		return ids;
+		System.out.println("The name you gave: " + name);
+		System.out.println("The body: " + something);
+		ArrayList<String> listIds = (ArrayList<String>) ids;
+		ArrayList<Integer> lisIdsint = new ArrayList<>();
+
+		for (String s: listIds) {
+			lisIdsint.add(Integer.parseInt(s));
+		}
+
+ 		System.out.println("The list of INTEGER: " + lisIdsint);
+
+
+		return lisIdsint;
 	}
 
 	@POST
